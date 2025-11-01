@@ -1,0 +1,234 @@
+# tongou_3gang_dimmer_switch_x1hneali9mrcfr47.yaml v1.0
+# 2025-08-22 15:49:18
+name: "Tongou 3-gang Dimmer Switch"
+products:
+  - id: x1hneali9mrcfr47
+    name: "NH-ZS multi-channel dimmer 3L"
+entities:
+  - entity: light
+    name: "Projector LEDs (Ch1)"
+    icon: "mdi:spotlight-beam"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+  - entity: light
+    name: "Light (Ch2)"
+    icon: "mdi:lightbulb-variant"
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+  - entity: light
+    name: "Cove LED (Ch3)"
+    icon: "mdi:led-strip-variant"
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+
+  - entity: number
+    name: "Minimum brightness (Ch1)"
+    icon: "mdi:brightness-5"
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: "Maximum brightness (Ch1)"
+    icon: "mdi:brightness-7"
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: "Countdown (Ch1)"
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+
+  - entity: number
+    name: "Minimum brightness (Ch2)"
+    icon: "mdi:brightness-5"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: "Maximum brightness (Ch2)"
+    icon: "mdi:brightness-7"
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: "Countdown (Ch2)"
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+
+  - entity: number
+    name: "Minimum brightness (Ch3)"
+    icon: "mdi:brightness-5"
+    category: config
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: "Maximum brightness (Ch3)"
+    icon: "mdi:brightness-7"
+    category: config
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: "Countdown (Ch3)"
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+
+  - entity: select
+    name: "Lamp type (Ch1)"
+    icon: "mdi:lightbulb-outline"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: select
+    name: "Lamp type (Ch2)"
+    icon: "mdi:lightbulb-outline"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: select
+    name: "Lamp type (Ch3)"
+    icon: "mdi:lightbulb-outline"
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+
+  - entity: select
+    name: "Power-on state"
+    icon: "mdi:power-settings"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: off
+            value: Off
+          - dps_val: on
+            value: On
+          - dps_val: memory
+            value: Last state
+  - entity: select
+    name: "Indicator light mode"
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: Off
+          - dps_val: relay
+            value: Follow relay
+          - dps_val: pos
+            value: On when switch is off

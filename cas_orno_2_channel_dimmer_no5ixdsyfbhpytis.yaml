@@ -1,0 +1,123 @@
+# tongou_orno_2_channel_dimmer_no5ixdsyfbhpytis.yaml v1.1
+# 2025-08-25 08:22:14 WEST
+name: ORNO 2-channel Dimmer (OR-SH-17103)
+products:
+  - id: no5ixdsyfbhpytis
+    name: ORNO 2-channel dimmer Wi-Fi BLE
+entities:
+  - entity: light
+    name: Channel 1
+    icon: mdi:lightbulb
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+          step: 1
+        mapping:
+          - target_range:
+              min: 1
+              max: 255
+  - entity: light
+    name: Channel 2
+    icon: mdi:lightbulb
+    dps:
+      - id: 7
+        name: switch
+        type: boolean
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+          step: 1
+        mapping:
+          - target_range:
+              min: 1
+              max: 255
+  - entity: number
+    category: config
+    name: Min brightness 1
+    icon: mdi:brightness-4
+    dps:
+      - id: 3
+        name: value
+        type: integer
+        range:
+          min: 10
+          max: 1000
+          step: 1
+  - entity: number
+    category: config
+    name: Max brightness 1
+    icon: mdi:brightness-7
+    dps:
+      - id: 5
+        name: value
+        type: integer
+        range:
+          min: 10
+          max: 1000
+          step: 1
+  - entity: number
+    category: config
+    name: Min brightness 2
+    icon: mdi:brightness-4
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        range:
+          min: 10
+          max: 1000
+          step: 1
+  - entity: number
+    category: config
+    name: Max brightness 2
+    icon: mdi:brightness-7
+    dps:
+      - id: 11
+        name: value
+        type: integer
+        range:
+          min: 10
+          max: 1000
+          step: 1
+  - entity: number
+    name: Countdown 1
+    icon: mdi:timer-outline
+    dps:
+      - id: 6
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+          step: 1
+  - entity: number
+    name: Countdown 2
+    icon: mdi:timer-outline
+    dps:
+      - id: 12
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+          step: 1
+  - entity: switch
+    category: config
+    name: Backlight
+    icon: mdi:led-on
+    dps:
+      - id: 26
+        name: switch
+        type: boolean

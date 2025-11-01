@@ -1,0 +1,87 @@
+# cas_oro_e27_a65_rgbw_z5if3a88skmy75v2_v1_4.yaml v1_4
+# 2025-09-19 10:48:30 WEST
+name: ORO E27 A65 RGBW (ORO31002)
+products:
+  - id: z5if3a88skmy75v2
+
+entities:
+  - entity: light
+    name: ORO E27 A65 RGBW
+    icon: mdi:lightbulb
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+
+      # Work mode -> color mode mapping expected by Tuya Local
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: scene
+          - dps_val: music
+            value: music
+
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+      # HSV in hex (6 bytes => 12 hex chars). Format names are required by Tuya Local.
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+      - id: 25
+        name: scene_data
+        type: string
+        optional: true
+
+      - id: 26
+        name: countdown
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+        optional: true
+
+      - id: 41
+        name: remote_switch
+        type: boolean
+        optional: true
+        hidden: true

@@ -1,0 +1,375 @@
+# tongou_tosmr1-40jwt_pqcmqh1ufgmalru0.yaml v2.3
+# 2025-09-18 21:10:56 UTC
+name: Tongou TOSMR1-40JWT (RCBO)
+products:
+  - id: pqcmqh1ufgmalru0
+
+entities:
+  # Controls
+  - entity: switch
+    name: Breaker
+    icon: mdi:power
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+
+  # Core sensors
+  - entity: sensor
+    name: Energy total
+    class: energy
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing # <-- aqui é que define o state_class
+        mapping:
+          - scale: 100 # mantém como já tens, se te dá o valor certo
+
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        name: sensor
+        type: base64
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+        optional: true
+
+  - entity: sensor
+    name: Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        name: sensor
+        type: base64
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+        optional: true
+
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        name: sensor
+        type: base64
+        unit: W
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1
+        optional: true
+
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        unit: mA
+
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 131
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        optional: true
+
+  # Online / connectivity
+  - entity: binary_sensor
+    name: Online
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 109
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+        optional: true
+
+  # Event (enum sensor)
+  - entity: sensor
+    name: Event
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 110
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: Normal
+            value: Normal
+          - dps_val: Over_Current_Trip
+            value: Over current trip
+          - dps_val: Over_Power_Trip
+            value: Over power trip
+          - dps_val: High_Temp_Trip
+            value: High temperature trip
+          - dps_val: Over_Voltage_Trip
+            value: Over voltage trip
+          - dps_val: Under_Voltage_Trip
+            value: Under voltage trip
+          - dps_val: Over_Current_Alarm
+            value: Over current alarm
+          - dps_val: Over_Power_Alarm
+            value: Over power alarm
+          - dps_val: High_Temp_Alarm
+            value: High temperature alarm
+          - dps_val: Over_Voltage_Alarm
+            value: Over voltage alarm
+          - dps_val: Under_Voltage_Alarm
+            value: Under voltage alarm
+          - dps_val: Remote_ON
+            value: Remote ON
+          - dps_val: Remote_OFF
+            value: Remote OFF
+          - dps_val: Manual_ON
+            value: Manual ON
+          - dps_val: Manual_OFF
+            value: Manual OFF
+          - dps_val: Leakage_Trip
+            value: Leakage trip
+          - dps_val: Leakage_Alarm
+            value: Leakage alarm
+          - dps_val: Restore_Default
+            value: Restore default
+          - dps_val: Automatic_Closing
+            value: Automatic closing
+          - dps_val: Electricity_Shortage
+            value: Electricity shortage
+          - dps_val: Electricity_Shortage_Alarm
+            value: Electricity shortage alarm
+          - dps_val: Timing_switch_ON
+            value: Timing switch ON
+          - dps_val: Timing_switch_OFF
+            value: Timing switch OFF
+        optional: true
+
+  # Configuration (actions)
+  - entity: select
+    name: Over-voltage Action
+    category: config
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: mdi:electric-switch-closed
+          - dps_val: Alarm
+            value: Alarm
+            icon: mdi:bell-alert
+          - dps_val: Trip
+            value: Trip
+            icon: mdi:electric-switch
+
+  - entity: select
+    name: Under-voltage Action
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: mdi:electric-switch-closed
+          - dps_val: Alarm
+            value: Alarm
+            icon: mdi:bell-alert
+          - dps_val: Trip
+            value: Trip
+            icon: mdi:electric-switch
+
+  - entity: select
+    name: Over-current Action
+    category: config
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: mdi:electric-switch-closed
+          - dps_val: Alarm
+            value: Alarm
+            icon: mdi:bell-alert
+          - dps_val: Trip
+            value: Trip
+            icon: mdi:electric-switch
+
+  - entity: select
+    name: Over-power Action
+    category: config
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: mdi:electric-switch-closed
+          - dps_val: Alarm
+            value: Alarm
+            icon: mdi:bell-alert
+          - dps_val: Trip
+            value: Trip
+            icon: mdi:electric-switch
+
+  - entity: select
+    name: Over-temperature Action
+    category: config
+    dps:
+      - id: 107
+        name: option
+        type: string
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: mdi:electric-switch-closed
+          - dps_val: Alarm
+            value: Alarm
+            icon: mdi:bell-alert
+          - dps_val: Trip
+            value: Trip
+            icon: mdi:electric-switch
+
+  - entity: select
+    name: Leakage Action
+    category: config
+    dps:
+      - id: 108
+        name: option
+        type: string
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: mdi:electric-switch-closed
+          - dps_val: Alarm
+            value: Alarm
+            icon: mdi:bell-alert
+          - dps_val: Trip
+            value: Trip
+            icon: mdi:electric-switch
+
+  - entity: switch
+    name: Auto-reclosing
+    category: config
+    icon: mdi:restart
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+        optional: true
+
+  # Configuration (thresholds)
+  - entity: number
+    name: Overcurrent Threshold
+    class: current
+    category: config
+    icon: mdi:current-ac
+    dps:
+      - id: 114
+        name: value
+        type: integer
+        unit: A
+        range:
+          min: 1
+          max: 40
+
+  - entity: number
+    name: Over-voltage Threshold
+    class: voltage
+    category: config
+    icon: mdi:flash-triangle
+    dps:
+      - id: 115
+        name: value
+        type: integer
+        unit: V
+        range:
+          min: 245
+          max: 295
+
+  - entity: number
+    name: Under-voltage Threshold
+    class: voltage
+    category: config
+    icon: mdi:flash-alert-outline
+    dps:
+      - id: 116
+        name: value
+        type: integer
+        unit: V
+        range:
+          min: 145
+          max: 220
+
+  - entity: number
+    name: Temperature Threshold
+    class: temperature
+    category: config
+    icon: mdi:thermometer-alert
+    dps:
+      - id: 118
+        name: value
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -250
+          max: 1000
+
+  - entity: number
+    name: Over-power Threshold
+    class: power
+    category: config
+    icon: mdi:arrow-collapse-up
+    dps:
+      - id: 119
+        name: value
+        type: integer
+        unit: W
+        range:
+          min: 5
+          max: 25000
+          step: 10
+
+  - entity: number
+    name: Leakage Threshold
+    class: current
+    category: config
+    icon: mdi:current-dc
+    dps:
+      - id: 117
+        name: value
+        type: integer
+        unit: mA
+        range:
+          min: 30
+          max: 100
+          step: 5

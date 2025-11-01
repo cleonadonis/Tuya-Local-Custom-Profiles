@@ -1,0 +1,141 @@
+# cas_at_q_sy2_jwt_3lbgj7cu27nsmh0w_v1_0.yaml v1_0
+# 2025-09-19 18:33:20 WEST
+name: "SY2 WiFi switch with metering"
+products:
+  - id: "3lbgj7cu27nsmh0w"
+
+entities:
+  - entity: switch
+    name: Relay
+    icon: mdi:electric-switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Current
+    class: current
+    icon: mdi:current-ac
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: A
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: Power
+    class: power
+    icon: mdi:flash-outline
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: W
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Energy total
+    class: energy
+    icon: mdi:counter
+    state_class: total_increasing
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    icon: mdi:thermometer
+    dps:
+      - id: 47
+        name: sensor
+        type: integer
+        unit: °C
+
+  - entity: select
+    name: Power-on state
+    icon: mdi:toggle-switch
+    dps:
+      - id: 38
+        name: option
+        type: string
+        mapping:
+          - dps_val: off
+            value: power_off
+          - dps_val: on
+            value: power_on
+          - dps_val: memory
+            value: last
+
+  - entity: select
+    name: Indicator mode
+    icon: mdi:led-on
+    dps:
+      - id: 40
+        name: option
+        type: string
+        mapping:
+          - dps_val: relay
+            value: relay
+          - dps_val: pos
+            value: position
+          - dps_val: none
+            value: off
+          - dps_val: on
+            value: on
+
+  - entity: switch
+    name: Child lock
+    icon: mdi:account-lock
+    dps:
+      - id: 41
+        name: switch
+        type: boolean
+
+  - entity: number
+    name: Countdown
+    icon: mdi:timer-outline
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+
+  - entity: sensor
+    name: Online state
+    icon: mdi:cloud-check-outline
+    dps:
+      - id: 66
+        name: sensor
+        type: string
+
+  - entity: sensor
+    name: Fault
+    icon: mdi:alert-circle-outline
+    dps:
+      - id: 26
+        name: sensor
+        type: bitfield

@@ -1,0 +1,125 @@
+# tongou_mmwave_presence_sensor_5lld8pgsoynvctqa.yaml v3.10
+# 2025-08-21 11:58:00
+name: "Tongou mmWave Presence Sensor (24G Wi-Fi)"
+products:
+  - id: "5lld8pgsoynvctqa"
+    name: "24G-Presence Sensor V3"
+entities:
+  - entity: binary_sensor
+    name: Presence
+    icon: "mdi:account-eye"
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "presence"
+            value: true
+          - dps_val: "none"
+            value: false
+
+  - entity: sensor
+    name: Target distance (closest)
+    icon: "mdi:arrow-left-right"
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: m
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Illuminance
+    icon: "mdi:brightness-5"
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: lx
+
+  - entity: number
+    name: Sensitivity (macro movement)
+    icon: "mdi:tune-variant"
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+
+  - entity: number
+    name: Static sensitivity (micro movement)
+    icon: "mdi:tune-variant"
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+
+  - entity: number
+    name: Near detection distance
+    icon: "mdi:arrow-collapse-horizontal"
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 825
+          step: 75
+        mapping:
+          - scale: 100
+
+  - entity: number
+    name: Far detection distance
+    icon: "mdi:arrow-expand-horizontal"
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 75
+          max: 900
+          step: 75
+        mapping:
+          - scale: 100
+
+  - entity: number
+    name: Vacancy delay
+    icon: "mdi:timer-sand"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 15000
+          step: 5
+
+  - entity: sensor
+    name: Presence state (timed)
+    icon: "mdi:account-clock"
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+
+  - entity: switch
+    name: Distance display (On/Off)
+    icon: "mdi:power"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch

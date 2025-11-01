@@ -1,0 +1,119 @@
+# tongou_scheeair_nova100_v5yzxit33hd1btwx.yaml v1.8
+# 2025-08-21 07:51:59 Europe/Lisbon
+name: SCHEEAIR Nova100 (Custom)
+products:
+  - id: v5yzxit33hd1btwx
+entities:
+  - entity: switch
+    name: Device Power
+    icon: "mdi:power"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: humidifier
+    name: Humidity control
+    icon: "mdi:water-percent"
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
+      - id: 104
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 100
+          step: 5
+        unit: "%"
+      - id: 101
+        name: current_humidity
+        type: integer
+        unit: "%"
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    icon: "mdi:thermometer"
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: "C"
+        range:
+          min: 0
+          max: 50
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    icon: "mdi:water-percent"
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: select
+    name: Fan mode
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "stop"
+            value: "stop"
+          - dps_val: "low"
+            value: "low"
+          - dps_val: "high"
+            value: "high"
+  - entity: switch
+    name: Microwave Sensor Control
+    icon: "mdi:radar"
+    category: config
+    dps:
+      - id: 107
+        name: switch
+        type: boolean
+  - entity: number
+    name: Stop delay
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 60
+          step: 1
+        unit: "min"
+  - entity: binary_sensor
+    name: Microwave Motion
+    class: motion
+    icon: "mdi:radar"
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "pir"
+            value: true
+          - dps_val: "none"
+            value: false
+  - entity: sensor
+    name: Fan speed state
+    class: enum
+    icon: "mdi:fan-alert"
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "high"
+            value: "stop"
+          - dps_val: "stop"
+            value: "low"
+          - dps_val: "low"
+            value: "high"

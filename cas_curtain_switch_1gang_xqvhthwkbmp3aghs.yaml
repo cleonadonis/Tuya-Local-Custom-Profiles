@@ -1,0 +1,77 @@
+# tongou_curtain_switch_1gang_xqvhthwkbmp3aghs.yaml v1.0
+# 2025-08-22 08:08:15 Europe/Lisbon
+name: Tongou Curtain Switch (1 gang)
+products:
+  - id: xqvhthwkbmp3aghs
+    name: NH-ZS 1L Curtain Switch (0607)
+entities:
+  - entity: cover
+    name: Curtain
+    icon: "mdi:curtains"
+    class: curtain
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        type: integer
+        name: position
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        step: 10
+  - entity: select
+    name: Calibration
+    icon: "mdi:tune"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: start
+            value: start
+          - dps_val: end
+            value: end
+  - entity: switch
+    name: Backlight
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Motor direction
+    icon: "mdi:swap-horizontal-bold"
+    category: config
+    dps:
+      - id: 8
+        type: string
+        name: option
+        mapping:
+          - dps_val: forward
+            value: Forward
+          - dps_val: back
+            value: Reverse
+  - entity: number
+    name: Travel time
+    icon: "mdi:timer-cog"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 240
+        step: 1

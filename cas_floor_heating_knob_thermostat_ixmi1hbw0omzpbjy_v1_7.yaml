@@ -1,0 +1,169 @@
+# cas_floor_heating_knob_thermostat_ixmi1hbw0omzpbjy_v1_7.yaml v1_7
+# 2025-09-19 20:21:38 WEST
+name: Floor Heating Knob Thermostat
+products:
+  - id: ixmi1hbw0omzpbjy
+
+entities:
+  - entity: climate
+    name: Thermostat
+    icon: mdi:hvac
+    precision: 0.5
+    dps:
+      # Power mapped as HVAC mode -> enables climate.turn_on/off
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+
+      # Operating program exposed as preset (keeps Auto/Manual selection)
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+
+      - id: 16
+        name: temperature
+        type: integer
+        unit: "°C"
+        mapping:
+          - scale: 10
+        range:
+          min: 50
+          max: 450
+          step: 5
+
+      - id: 24
+        name: current_temperature
+        type: integer
+        unit: "°C"
+        mapping:
+          - scale: 10
+        range:
+          min: 0
+          max: 900
+          step: 5
+
+      - id: 36
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
+
+  - entity: sensor
+    name: Floor temperature
+    class: temperature
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: "°C"
+        mapping:
+          - scale: 10
+        range:
+          min: 0
+          max: 900
+          step: 5
+
+  - entity: number
+    name: Backlight
+    icon: mdi:brightness-6
+    dps:
+      - id: 44
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+          step: 1
+
+  - entity: select
+    name: Temperature sensor
+    icon: mdi:vector-point
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: IN
+            value: Room
+          - dps_val: AL
+            value: Both
+          - dps_val: OU
+            value: Floor
+
+  - entity: number
+    name: Deadzone
+    icon: mdi:delta
+    dps:
+      - id: 103
+        name: value
+        type: integer
+        unit: "°C"
+        range:
+          min: 0
+          max: 5
+          step: 1
+
+  - entity: number
+    name: High protect temp
+    icon: mdi:thermometer-chevron-up
+    dps:
+      - id: 104
+        name: value
+        type: integer
+        unit: "°C"
+        mapping:
+          - scale: 10
+        range:
+          min: 100
+          max: 700
+          step: 10
+
+  - entity: number
+    name: Low protect temp
+    icon: mdi:thermometer-chevron-down
+    dps:
+      - id: 105
+        name: value
+        type: integer
+        unit: "°C"
+        mapping:
+          - scale: 10
+        range:
+          min: 0
+          max: 100
+          step: 10
+
+  - entity: number
+    name: Calibration
+    icon: mdi:thermometer-plus
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        unit: "°C"
+        range:
+          min: -9
+          max: 9
+          step: 1
+
+  - entity: sensor
+    name: Work state
+    icon: mdi:information-outline
+    dps:
+      - id: 3
+        name: sensor
+        type: string
